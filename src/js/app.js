@@ -28,6 +28,7 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  let avatarImg = variables.avatarURL;
   let nombre = variables.name;
   let apellido = variables.lastName ? variables.lastName : `and your last name`;
   let nombreCompleto =
@@ -37,18 +38,23 @@ function render(variables = {}) {
     variables.city && variables.country
       ? `${variables.city} ${variables.country}`
       : "input your city and country";
+  let socialMediaPosition = variables.socialMediaPosition;
+  let twitterUrl = variables.twitter;
+  let githubUrl = variables.github;
+  let linkedinUrl = variables.linkedin;
+  let instagramUrl = variables.instagram;
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
+          <img src="${avatarImg}" class="photo" />
           <h1>${nombreCompleto}</h1>
           <h2>${profesión}</h2>
           <h3>${ciudadYPais}</h3>
-          <ul class="${variables.socialMediaPosition}">
-            <li><a href="${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="${variables.github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+          <ul class="${socialMediaPosition}">
+            <li><a href="${twitterUrl}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="${githubUrl}"><i class="fab fa-github"></i></a></li>
+            <li><a href="${linkedinUrl}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="${instagramUrl}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
